@@ -8,8 +8,8 @@ from tqdm import tqdm
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--count-for-learning', '-cl', type=int, default=15_000)
-    parser.add_argument('--count-for-validation', '-cv', type=int, default=3_000)
+    parser.add_argument('--count-for-learning', '-cl', type=int, default=10_000)
+    parser.add_argument('--count-for-validation', '-cv', type=int, default=5_000)
     parser.add_argument('--use-neutral', '-n', action='store_true')
     parser.add_argument('--train-size', '-ts', type=float, default=0.7)
     parser.add_argument('--n-process', '-np', type=int, default=4)
@@ -28,7 +28,7 @@ if __name__ == '__main__':
             doc.cats = {c: c == cat for c in cats}
             if i >= args.count_for_learning:
                 db_validate.add(doc)
-            if i / args.count_for_learning >= args.train_size:
+            elif i / args.count_for_learning >= args.train_size:
                 db_test.add(doc)
             else:
                 db_train.add(doc)
