@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+          crossorigin="anonymous">
+    <title>Анализ эмоциональной окраски текста</title>
+</head>
+<body>
+<main role="main" class="container-sm">
+    <br><br>
+    <h1>Анализ текста</h1>
+    <form method="post">
+        <div class="form-group">
+            <textarea class="form-control" name="text" placeholder="Введите текст для анализа" required>{{ text }}</textarea>
+        </div><br>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+    {% if cats %}
+    <br>
+    <div class="alert alert-{{ type }}" role="alert">
+        Результат классификации: {{ cats.verdict }}, значения: позитивный - {{ cats.cats.pos }},
+        негативный - {{ cats.cats.neg }}
+    </div>
+    {% endif %}
+</main>
+</body>
+</html>
